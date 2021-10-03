@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"npm run start --prefix server"
+    "dev": "npm run start --prefix server"
   },
   "author": "Diganta Das",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "npx": "^10.2.2"
+  }
 }
