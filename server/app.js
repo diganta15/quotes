@@ -14,6 +14,6 @@ app.use(express.json());
 app.get("/",(req,res)=>{
     res.send('Working');
 });
-app.use("/",require('./routes/quotes.route'));
-
+app.use("/quotes",require('./routes/quotes.route'));
+app.use("/user",require('./routes/user.routes'));
 app.listen(PORT,()=>console.log(`Listening on port ${3000}`));
