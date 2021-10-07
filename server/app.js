@@ -1,12 +1,16 @@
 const express = require('express');
 const morgan = require('morgan')
 
+const mongoConnect = require('./services/mongo');
+
 const app = express()
 
 const PORT = 3000;
 
-app.use(morgan('dev'))
+mongoConnect();
 
+app.use(morgan('dev'))
+app.use(express.json());
 app.get("/",(req,res)=>{
     res.send('Working');
 });

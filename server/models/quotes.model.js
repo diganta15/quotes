@@ -1,3 +1,5 @@
+const quote = require('../models/quote.mongo');
+
 const quotes = [
     {
         id: "1",
@@ -27,8 +29,26 @@ function getQuote(id){
     return quotes.filter(quote => quote.id === id);
 }
 
+async function saveData(data){
+    console.log(data);
+
+    const newQuote = new quote(data);
+
+   const res = await newQuote.save(data);
+   return res;
+}
+
+async function addQuote(quote){
+    const quoteWithDefaultFields = {
+        ...quote,
+        date:new Date(),
+    }  
+    return saveData(quoteWithDefaultFields);
+   
+}
+
 module.exports = {
     getAllQuotes,
     getQuote,
-    
+    addQuote,
 }
