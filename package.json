@@ -10,6 +10,7 @@
   "author": "Diganta Das",
   "license": "MIT",
   "dependencies": {
+    "express-validator": "^6.12.2",
     "npx": "^10.2.2"
   }
 }
