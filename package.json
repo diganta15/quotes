@@ -10,6 +10,8 @@
   "author": "Diganta Das",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
     "express-validator": "^6.12.2",
     "npx": "^10.2.2"
   }

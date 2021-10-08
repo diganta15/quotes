@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const MONGO_URL = "mongodb://diganta15:Diganta15@quotes-shard-00-00.r6oy0.mongodb.net:27017,quotes-shard-00-01.r6oy0.mongodb.net:27017,quotes-shard-00-02.r6oy0.mongodb.net:27017/database?ssl=true&replicaSet=atlas-jv2hxm-shard-0&authSource=admin&retryWrites=true&w=majority";
+const MONGO_URL = process.env.MONGO_URL;
 
 function mongoConnect(){
     try{

@@ -1,11 +1,15 @@
 const express = require('express');
-const morgan = require('morgan')
+const morgan = require('morgan');
+const dotenv = require('dotenv');
 
+//load config
+dotenv.config({path:'./config/config.env'})
 const mongoConnect = require('./services/mongo');
 
 const app = express()
 
 const PORT = 3000;
+
 
 mongoConnect();
 
