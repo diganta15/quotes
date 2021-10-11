@@ -1,6 +1,9 @@
+const {signup} = require('../models/user.model');
 
 async function httpAddUser(req,res){
-    res.send("signup")
+    const response = await signup(req.body);
+   return res.status(200).json(response);
+
 }
 
 async function httpLogInUser(req,res){
