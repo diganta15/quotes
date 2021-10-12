@@ -16,6 +16,7 @@ async function httpAddUser(req,res){
         return res.status(200).json(response);
     }
     catch(err){
+        console.log("here");
         return res.status(500).json({"error":"Internal Server Error"});
     }
 
