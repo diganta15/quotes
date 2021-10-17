@@ -34,12 +34,10 @@ async function httpLogInUser(req, res) {
 	}
 }
 
-async function httpLogOutUser(req, res) {
-	res.send("log out");
-}
+
 
 module.exports = {
 	httpAddUser,
 	httpLogInUser,
-	httpLogOutUser,
+
 };

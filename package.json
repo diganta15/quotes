@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm run start --prefix server"
+    "dev": "npm run start --prefix server",
+    "client":"npm run start --prefix client"
   },
   "author": "Diganta Das",
   "license": "MIT",
