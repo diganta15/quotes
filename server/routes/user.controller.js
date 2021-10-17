@@ -1,4 +1,4 @@
-const {signup} = require('../models/user.model');
+const {signup, login} = require('../models/user.model');
 
 async function httpAddUser(req,res){
     if(!req.body.name){
@@ -16,8 +16,8 @@ async function httpAddUser(req,res){
         return res.status(200).json(response);
     }
     catch(err){
-        console.log("here");
-        return res.status(500).json({"error":"Internal Server Error"});
+       
+        return res.status(500).json({error:"Internal Server Error"});
     }
 
 
@@ -25,7 +25,13 @@ async function httpAddUser(req,res){
 }
 
 async function httpLogInUser(req,res){
-    res.send("log in");
+
+    try{
+       return res.status(200).json(await login(req.body));
+    }catch(err){
+        return res.status(500).json({error:"Internal Server Error"});
+    }
+
 }
 
 async function httpLogOutUser(req,res){

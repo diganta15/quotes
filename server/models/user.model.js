@@ -30,7 +30,7 @@ async function saveData(data) {
     }
 }
 
-
+//add user
 async function signup(data){
 
     const {password, email} = data;
@@ -64,6 +64,49 @@ async function signup(data){
    return res;
 }
 
+
+
+async function newToken(payload){
+    let webToken;
+    webToken = await jwt.sign(payload, secret, {
+        expiresIn: 360000
+    })
+    data.jwt = webToken;
+    
+}
+
+//log in existing user
+async function login(data){
+    const {email, password} = data;
+ 
+    try{
+        let foundUser = await user.findOne({email});
+   
+        const dbPassword = foundUser.password;
+
+        const isSamePassword = bcrypt.compareSync(password, dbPassword);
+
+        if (isSamePassword) {
+            return foundUser.jwt;
+        }
+        else return {
+            status: 400,
+            error: "Password Does Not Match"
+        }
+    }
+    catch(err){
+        return {
+            status:500,
+            error:"Cannot Connect To Database"
+        }
+    }
+
+
+
+
+}
+
 module.exports={
     signup,
+    login,
 }
