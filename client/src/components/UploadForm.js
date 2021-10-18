@@ -1,7 +1,7 @@
-import React,{useState} from 'react'
+import React,{useRef} from 'react'
 
 export const UploadForm = () => {
-    const [data, setData] = useState({
+    const data = useRef({
         author:"",
         quote:"",
         date: "",
@@ -9,15 +9,18 @@ export const UploadForm = () => {
 
     const onSubmit = async(e)=>{
         e.preventDefault();
-        
-            setData({
-            ...data,
-            author:e.target.author.value,
-            quote:e.target.quote.value,
-            date: Date(),
-        });
 
-        
+        data.current = {
+            ...data,
+            author: e.target.author.value,
+            quote: e.target.quote.value,
+            date: Date(),
+        }
+
+        //TODO Submit data to database
+   
+
+        console.log(data);
     }
 
     return (
