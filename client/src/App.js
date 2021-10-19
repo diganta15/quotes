@@ -4,6 +4,7 @@ import { Quotes } from './components/Quotes/Quotes';
 import { UploadForm } from './components/UploadForm';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import { Login } from './components/Login';
+import { RegisterForm } from './components/RegisterForm';
 import { NotFound } from './404';
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Switch>
           <Route exact path='/' component={Quotes} />
         <Route exact path='/upload' component={UploadForm} />
+        <Route exact path='/register' component={RegisterForm} />
         <Route exact path ='/login' component={Login} />
         <Route component={NotFound} />
           </Switch>

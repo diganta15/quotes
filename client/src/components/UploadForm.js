@@ -40,7 +40,7 @@ export const UploadForm = () => {
                   <textarea name="quote" id="" cols="30" rows="10" className="input" placeholder="Quote"></textarea>
                </div>
            </div>
-            <input type="submit" value="Submit" />
+            <input className="button" type="submit" value="Submit" />
             </form>
         </div>
     )
