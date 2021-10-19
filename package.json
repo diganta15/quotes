@@ -6,16 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npm run start --prefix server",
-    "client":"npm run start --prefix client"
+    "client": "npm run start --prefix client"
   },
   "author": "Diganta Das",
   "license": "MIT",
   "dependencies": {
-    "bcrypt": "^5.0.1",
-    "config": "^3.3.6",
-    "dotenv": "^10.0.0",
-    "express-validator": "^6.12.2",
-    "jsonwebtoken": "^8.5.1",
     "npx": "^10.2.2"
+    
   }
 }

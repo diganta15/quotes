@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import {Link} from 'react-router-dom';
 
 export const Header = () => {
     const [active, setActive] = useState(false);
@@ -26,9 +27,9 @@ export const Header = () => {
 				</div>
 				<div className={active?'navbar-menu is-active':'navbar-menu'} >
 					<ul className='navbar-end'>
-						<li className='navbar-item'>Quotes</li>
-						<li className='navbar-item'>Upload</li>
-                        <li className='navbar-item'>Profile</li>
+						<Link to='/' className='navbar-item'>Quotes</Link>
+						<Link to='/upload' className='navbar-item'>Upload</Link>
+                        <Link to='/profile' className='navbar-item'>Profile</Link>
 					</ul>
 				</div>
 			</nav>
