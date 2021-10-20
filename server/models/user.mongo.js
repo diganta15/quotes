@@ -18,10 +18,6 @@ const user = new mongoose.Schema(
         date:{
             type:Date,
             required:true,
-        },
-        jwt:{
-            type:String,
-            required:true,
         }
     }
 );

@@ -11,6 +11,7 @@ async function httpGetQuote(req, res) {
 }
 
 async function httpAddQuote(req, res) {
+	
 	try {
 		if (!req.body.author) {
 			return res.status(400).json({ error: "Please add author" });
