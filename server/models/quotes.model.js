@@ -50,8 +50,20 @@ async function addQuote(quote) {
 	return res;
 }
 
+async function getUserQuotes(id){
+	try {
+		const res = await quote.find({ userId: id }).sort({date:-1});
+		return res;
+	}
+	catch (err) {
+		const error = { error: "Cannot get user's quote" };
+		return error;
+	}
+}
+
 module.exports = {
 	getAllQuotes,
 	getQuote,
 	addQuote,
+	getUserQuotes
 };

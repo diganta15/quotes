@@ -14,13 +14,14 @@ module.exports = function (req, res, next) {
     }
     try{
         const decoded = jwt.verify(token,config.get('jwtSecret'));
-        console.log(req.email);
-
         console.log(decoded); 
+        next();
     }
     catch(err){
-
+        res.status(400).json({error:"Invalid Token"})
     }
+
+
 
 };
 

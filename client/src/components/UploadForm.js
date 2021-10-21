@@ -25,6 +25,9 @@ export const UploadForm = () => {
 
     return (
         <div className="container">
+            <h1 className="title">
+                Upload
+            </h1>
             <form onSubmit={onSubmit} >
                 <div className="field">
                     <label htmlFor="author" className="label">Author</label>

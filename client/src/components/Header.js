@@ -1,10 +1,10 @@
-import React,{useState} from "react";
-import {Link} from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
-    const [active, setActive] = useState(false);
+	const [active, setActive] = useState(false);
+	const [user, setUser] = useState();
 
-   
 	return (
 		<div className='section is-centered'>
 			<nav className='navbar'>
@@ -14,22 +14,46 @@ export const Header = () => {
 					</div>
 					<a
 						role='button'
-						className={active?'navbar-burger is-active':'navbar-burger'}
+						className={active ? "navbar-burger is-active" : "navbar-burger"}
 						aria-label='menu'
 						aria-expanded='false'
 						data-target='navbarBasicExample'
-                        onClick={()=>setActive(!active)}
-                        >
+						onClick={() => setActive(!active)}>
 						<span aria-hidden='true'></span>
 						<span aria-hidden='true'></span>
 						<span aria-hidden='true'></span>
 					</a>
 				</div>
-				<div className={active?'navbar-menu is-active':'navbar-menu'} >
+				<div className={active ? "navbar-menu is-active" : "navbar-menu"}>
 					<ul className='navbar-end'>
-						<Link to='/' className='navbar-item'>Quotes</Link>
-						<Link to='/upload' className='navbar-item'>Upload</Link>
-                        <Link to='/profile' className='navbar-item'>Profile</Link>
+						<li>
+							<Link to='/' className='navbar-item'>
+								Quotes
+							</Link>
+						</li>
+						{user ? (
+							<>
+								<li>
+									<Link to='/upload' className='navbar-item'>
+										Upload
+									</Link>
+								</li>
+								<li>
+									<Link to='/dashboard' className='navbar-item'>
+										Dashboard
+									</Link>
+								</li>
+								<li className='button has-text-white has-background-black'>
+									<i className='fas fa-sign-out-alt'></i> Log Out
+								</li>
+							</>
+						) : (
+							<>
+								<li className='button has-text-white has-background-black'>
+									<i className='fas fa-sign-in-alt'></i>{" "} Log In
+								</li>
+							</>
+						)}
 					</ul>
 				</div>
 			</nav>
