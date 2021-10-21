@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React, { useState,useEffect,useContext } from "react";
 import { Link } from "react-router-dom";
+import AuthContext from "../context/auth/authContext";
 
 export const Header = () => {
 	const [active, setActive] = useState(false);
-	const [user, setUser] = useState();
+	const [user, setUser] = useState(null);
+	const authContext = useContext(AuthContext);
+	const {userEmail} = authContext;
+
+	useEffect(()=>{
+		if(userEmail !== null){
+			setUser(userEmail);
+		}
+	})
+	
 
 	return (
 		<div className='section is-centered'>

@@ -4,7 +4,7 @@ import authReducer from "./authReducer";
 
 const AuthState = (props) => {
 	const initialState = {
-		userEmail: "",
+		userEmail: null,
 		jwt: "",
 		errors: null,
 	};
@@ -38,3 +38,5 @@ const AuthState = (props) => {
 		</AuthContext.Provider>
 	);
 };
+
+export default AuthState;

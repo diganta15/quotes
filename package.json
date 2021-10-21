@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm run start --prefix server",
-    "client": "npm run start --prefix client"
+    "server": "npm run start --prefix server",
+    "client": "npm run start --prefix client",
+    "dev":"concurrently \"npm run server\" \"npm run client\" "
   },
   "author": "Diganta Das",
   "license": "MIT",
   "dependencies": {
+    "concurrently": "^6.3.0",
     "npx": "^10.2.2"
-    
   }
 }

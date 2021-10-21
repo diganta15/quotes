@@ -1,27 +1,19 @@
-import React from 'react';
+import React,{useContext, useEffect} from 'react';
 import { QuoteItem } from './QuoteItem';
+import { Loading } from '../Loading';
+import QuotesContext from '../../context/quotes/quoteContext';
 
 export const Quotes = () => {
-    const state = [
-        {
-            author:"Albert Camus",
-            quote:"And in the depth of the winter I found out that there lay an invincible summer within me",
-            date:"Tue Oct 19 2021 15:12:20 GMT+0530 (India Standard Time)"
-        },
-         {
-            author: "Albert Camus",
-            quote: "And in the depth of the winter I found out that there lay an invincible summer within me",
-            date: "Tue Oct 29 2021 15:12:20 GMT+0530 (India Standard Time)"
-        },
-         {
-            author: "Albert Camus",
-            quote: "And in the depth of the winter I found out that there lay an invincible summer within me",
-            date: "Tue Oct 12 2021 15:12:20 GMT+0530 (India Standard Time)"
-        }
-    ]
+    const quotesContext = useContext(QuotesContext);
+    const {quotes, loading, getAllQuotes} = quotesContext;
+
+    useEffect(()=>{
+        getAllQuotes();
+    },[])
     return (
         <div>
-            {state && state.map(item => <QuoteItem data={item} />) }
+            {loading ? <Loading /> : <> {quotes && quotes.map(item => <QuoteItem data={item} />)}</>}
+           
         </div>
     )
 }

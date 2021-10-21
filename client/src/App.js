@@ -8,25 +8,31 @@ import { RegisterForm } from "./components/RegisterForm";
 import { NotFound } from "./404";
 import { Dashboard } from "./components/Dashboard";
 import QuotesState from "./context/quotes/QuotesState";
+import AuthState from "./context/auth/AuthState";
+import { SingleQuote } from "./components/Quotes/SingleQuote";
 function App() {
 	return (
-		<QuotesState>
-			<Router>
-				<div className='App'>
-					<Header />
-					<div className='section'>
-						<Switch>
-							<Route exact path='/' component={Quotes} />
-							<Route exact path='/upload' component={UploadForm} />
-							<Route exact path='/register' component={RegisterForm} />
-							<Route exact path='/login' component={Login} />
-							<Route exact path='/dashboard' component={Dashboard} />
-							<Route component={NotFound} />
-						</Switch>
+		<AuthState>
+			<QuotesState>
+				<Router>
+					<div className='App'>
+						<Header />
+
+						<div className='section'>
+							<Switch>
+								<Route exact path='/' component={Quotes} />
+								<Route exact path='/upload' component={UploadForm} />
+								<Route exact path='/register' component={RegisterForm} />
+								<Route exact path='/login' component={Login} />
+								<Route exact path='/dashboard' component={Dashboard} />
+								<Route exact path='/quote/:id' component={SingleQuote} />
+								<Route component={NotFound} />
+							</Switch>
+						</div>
 					</div>
-				</div>
-			</Router>
-		</QuotesState>
+				</Router>
+			</QuotesState>
+		</AuthState>
 	);
 }
 

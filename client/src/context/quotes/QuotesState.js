@@ -1,31 +1,64 @@
-import React,{useReducer} from "react";
-import QuotesContext from './quoteContext';
-import quotesReducer from './quoteReducer';
+import React, { useReducer } from "react";
+import QuotesContext from "./quoteContext";
+import quotesReducer from "./quoteReducer";
+import { GET_ALL_QUOTES, GET_QUOTE,GET_USER_QUOTES,GET_USER_QUOTE } from "../types";
 
-const QuotesState = props =>{
-    const initialState={
-        quotes:null,
-        quote:null,
-        loading:false
+const URL = 'http://localhost:8000'
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkRpZ2FudGFAZW1haWwuY29tIiwiaWF0IjoxNjM0NzM5MjA5LCJleHAiOjE2MzUwOTkyMDl9.XbE6pl81WFRnK8yGIF1RsMX6OF0SgePOmrmP2x2NMc4'
+
+const QuotesState = (props) => {
+	const initialState = {
+		quotes:null,
+		quote: null,
+		loading: true,
+	};
+
+	const [state, dispatch] = useReducer(quotesReducer, initialState);
+
+	//Get All Quotes
+	const getAllQuotes = async() => {
+		
+	try{
+		const res = await fetch(`${URL}/quotes`);
+		const data = await res.json();
+		dispatch({type:GET_ALL_QUOTES, payload:data});
+		console.log(data);
+	}catch(err){
+		
+	}
+
+    };
+
+    //Get A Single Quote
+    const getQuote = async(id)=>{
+		
     }
 
-    const [state,dispatch] = useReducer(quotesReducer,initialState);
+	//Get A User's All Quotes
+    const getUserQuotes = async(userId)=>{
 
-    //Get All Quotes
-    const getAllQuotes=()=>{
-            
+        
     }
 
-    //Get Specific Quotes
+    //Get A User's Quote
+    const getUserQuote = async(id)=>{
 
-    return <QuotesContext.Provider value={{
-        quotes:state.quotes,
-        quote:state.quote,
-        loading:state.loading
-    }}>
-        {props.children}
-    </QuotesContext.Provider>
-    
-}
+    }
+
+	return (
+		<QuotesContext.Provider
+			value={{
+				quotes: state.quotes,
+				quote: state.quote,
+				loading: state.loading,
+                getAllQuotes,
+                getQuote,
+                getUserQuotes,
+                getUserQuote
+			}}>
+			{props.children}
+		</QuotesContext.Provider>
+	);
+};
 
 export default QuotesState;
