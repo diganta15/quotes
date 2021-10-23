@@ -1,4 +1,4 @@
-const { signup, login } = require("../models/user.model");
+const { signup, login,getLoggedInUser } = require("../models/user.model");
 
 async function httpAddUser(req, res) {
 	if (!req.body.name) {
@@ -34,10 +34,22 @@ async function httpLogInUser(req, res) {
 	}
 }
 
+async function httpGetLoggedInUser(req,res){
+	try{
+		const token =req.headers['x-auth-token'];
+	
+	
+		return res.status(200).json(await getLoggedInUser(token));
+	}
+	catch(err){
+		return res.status(400).json({error:"Internal Sever Error"})
+	}
+}
+
 
 
 module.exports = {
 	httpAddUser,
 	httpLogInUser,
-
+	httpGetLoggedInUser
 };

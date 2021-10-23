@@ -1,24 +1,28 @@
-import React,{useState} from "react";
+import React,{useState, useContext} from "react";
+import AuthContext from "../context/auth/authContext";
 
 export const RegisterForm = () => {
     const [data, setData] = useState({
         name:"",
         email:"",
         password:"",
-        passwordConfirm:"",
-        date:""
+        passwordConfirm:""
     });
+
+	const authContext = useContext(AuthContext);
+	const {signup} = authContext;
 
     const onChange = (e)=>{
         data[e.target.name] = e.target.value;
-        data['date'] = Date();
+     
     }
     //Submit data
 	const onSubmit = (e) => {
 		e.preventDefault();
        const {password, passwordConfirm} = data;
        if(password===passwordConfirm){
-           console.log(data);
+		   delete data.passwordConfirm;
+          signup(data);
        }
        else{
            console.log('No Match');

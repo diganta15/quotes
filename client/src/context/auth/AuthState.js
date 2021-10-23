@@ -1,7 +1,9 @@
 import React, { useReducer } from "react";
 import AuthContext from "./authContext";
 import authReducer from "./authReducer";
+import { SIGN_IN } from "../types";
 
+const URL = 'http://localhost:8000' 
 const AuthState = (props) => {
 	const initialState = {
 		userEmail: null,
@@ -12,10 +14,21 @@ const AuthState = (props) => {
 	const [state, dispatch] = useReducer(authReducer, initialState);
 
 	//load user
+	const loaduser = (token) =>{
 
+	}
 	//sign up
-	const signup = (data) => {
-		console.log("Signup");
+	const signup = async(formData) => {
+		const res = await fetch(`${URL}/user/signup`,{
+			method:'POST',
+			headers:{
+				'Content-Type':'application/json'
+			},
+			body:JSON.stringify(formData)
+		});
+		const data = await res.json();
+		console.log(data);
+		dispatch({type:SIGN_IN, payload:data});
 	};
 	//login
 	const login = (data) => {

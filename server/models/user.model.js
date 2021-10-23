@@ -103,9 +103,24 @@ async function login(data) {
 	}
 }
 
+async function getLoggedInUser(token){
+	try{
+		
+		const decoded = await jwt.verify(token,secret);
+		console.log(decoded);
+		return decoded;
+	}
+	catch(err){
+		return {
+			status:400,
+			error:"Cannot Log In"
+		}
+	}
+}
 	
 
 module.exports = {
 	signup,
 	login,
+	getLoggedInUser
 };

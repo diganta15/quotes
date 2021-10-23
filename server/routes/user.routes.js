@@ -1,6 +1,7 @@
 const express = require('express');
+const auth = require('../middleware/auth');
 
-const {httpAddUser, httpLogInUser} = require('./user.controller');
+const {httpAddUser, httpLogInUser, httpGetLoggedInUser} = require('./user.controller');
 const router = express.Router();
 
 //@desec    Add A User
@@ -13,5 +14,9 @@ router.post("/signup", httpAddUser);
 //@route    /user/login
 router.get("/login", httpLogInUser);
 
+//@desec    Get Logged In User
+//@access   Private
+//@route    /user/getuser
+router.get("/getuser",auth,httpGetLoggedInUser);
 
 module.exports = router;
