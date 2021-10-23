@@ -12,7 +12,7 @@ router.post("/signup", httpAddUser);
 //@desec    Log In A User
 //@access   Public
 //@route    /user/login
-router.get("/login", httpLogInUser);
+router.post("/login", httpLogInUser);
 
 //@desec    Get Logged In User
 //@access   Private

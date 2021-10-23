@@ -59,7 +59,11 @@ async function signup(data) {
 
 	//return the response after saving data
 	const res = await saveData(data);
-	return webToken;
+	const response = {
+		email:data.email,
+		jwt:webToken
+	}
+	return response;
 }
 
 // async function newToken(payload) {
@@ -89,7 +93,10 @@ async function login(data) {
 			webToken = await jwt.sign(payload, secret, {
 				expiresIn: 360000,
 			});
-			return webToken;
+			return {
+				email:email,
+				jwt:webToken,
+			};
 		} else
 			return {
 				status: 400,
