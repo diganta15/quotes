@@ -1,4 +1,4 @@
-import { ERROR, LOAD_USER, REGISTER, SIGN_IN } from "../types";
+import { ERROR, LOAD_USER, LOG_OUT, REGISTER, SIGN_IN } from "../types";
 import jwt from 'jsonwebtoken';
 
 export default (state,action)=>{
@@ -22,6 +22,11 @@ export default (state,action)=>{
             return {
                 ...state,
                 userEmail:action.payload.email,
+            }
+        case LOG_OUT:
+            return{
+                ...state,
+                userEmail:null
             }
         case ERROR:
             return {

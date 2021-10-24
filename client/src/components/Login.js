@@ -1,11 +1,19 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { useHistory } from "react-router";
 import AuthContext from "../context/auth/authContext";
 
 export const Login = () => {
 	const [data, setData] = useState({});
-
+	const history = useHistory();
 	const authContext = useContext(AuthContext);
-	const { login } = authContext;
+	const { login,userEmail } = authContext;
+
+	useEffect(()=>{
+		if(userEmail){
+			history.push('/');
+		}
+	})
+
 	const onChange = (e) => {
 		setData({
 			...data,

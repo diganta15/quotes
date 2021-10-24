@@ -1,18 +1,21 @@
 import React, { useState,useEffect,useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import AuthContext from "../context/auth/authContext";
 
 export const Header = () => {
 	const [active, setActive] = useState(false);
 	const [user, setUser] = useState(null);
+	const history = useHistory();
 	const authContext = useContext(AuthContext);
-	const {userEmail} = authContext;
+	const {userEmail, logout} = authContext;
 
 	useEffect(()=>{
 		if(userEmail !== null){
 			setUser(userEmail);
 		}
-	})
+	});
+
+
 	
 
 	return (
@@ -53,13 +56,18 @@ export const Header = () => {
 										Dashboard
 									</Link>
 								</li>
-								<li className='button has-text-white has-background-black'>
+								<li className='button has-text-white has-background-black' onClick={() => {
+									logout();
+									setUser(null);
+								}}>
 									<i className='fas fa-sign-out-alt'></i> Log Out
 								</li>
 							</>
 						) : (
 							<>
-								<li className='button has-text-white has-background-black'>
+								<li className='button has-text-white has-background-black' onClick={()=>{
+									history.push('/login')
+								}} >
 									<i className='fas fa-sign-in-alt'></i>{" "} Log In
 								</li>
 							</>

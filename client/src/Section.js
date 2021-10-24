@@ -9,6 +9,7 @@ import { SingleQuote } from "./components/Quotes/SingleQuote";
 import { Quotes } from "./components/Quotes/Quotes";
 import { UploadForm } from "./components/UploadForm";
 import AuthContext from './context/auth/authContext';
+import { PrivateRoute } from './routing/PrivateRoute';
 
 export const Section = () => {
 
@@ -28,10 +29,10 @@ export const Section = () => {
                 <Header />
                 <Switch>
                     <Route exact path='/' component={Quotes} />
-                    <Route exact path='/upload' component={UploadForm} />
+                    <PrivateRoute exact path='/upload' component={UploadForm} />
                     <Route exact path='/register' component={RegisterForm} />
                     <Route exact path='/login' component={Login} />
-                    <Route exact path='/dashboard' component={Dashboard} />
+                    <PrivateRoute exact path='/dashboard' component={Dashboard} />
                     <Route exact path='/quote/:id' component={SingleQuote} />
                     <Route component={NotFound} />
                 </Switch>
