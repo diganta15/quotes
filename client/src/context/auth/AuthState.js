@@ -1,14 +1,14 @@
 import React, { useReducer } from "react";
 import AuthContext from "./authContext";
 import authReducer from "./authReducer";
-import { ERROR, SIGN_IN, REGISTER, LOAD_USER,LOG_OUT } from "../types";
+import { ERROR, SIGN_IN, REGISTER, LOAD_USER, LOG_OUT } from "../types";
 
 const URL = "http://localhost:8000";
 const AuthState = (props) => {
 	const initialState = {
 		userEmail: null,
 		jwt: "",
-		userId:null,
+		userId: null,
 		errors: null,
 	};
 
@@ -23,7 +23,7 @@ const AuthState = (props) => {
 				},
 			});
 			const data = await res.json();
-			
+
 			dispatch({ type: LOAD_USER, payload: data });
 		} catch (err) {
 			console.log(err);
@@ -40,7 +40,7 @@ const AuthState = (props) => {
 				body: JSON.stringify(formData),
 			});
 			const data = await res.json();
-			
+
 			dispatch({ type: REGISTER, payload: data });
 			localStorage.setItem("token", data.jwt);
 		} catch (err) {
@@ -59,7 +59,7 @@ const AuthState = (props) => {
 			});
 			const data = await res.json();
 			localStorage.setItem("token", data.jwt);
-	
+
 			dispatch({ type: SIGN_IN, payload: data });
 		} catch (err) {
 			dispatch({ type: ERROR, payload: "Cannot Log In" });
@@ -68,7 +68,7 @@ const AuthState = (props) => {
 	//log out
 	const logout = () => {
 		localStorage.removeItem("token");
-		dispatch({type:LOG_OUT});
+		dispatch({ type: LOG_OUT });
 	};
 
 	return (
