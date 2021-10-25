@@ -12,7 +12,7 @@ export const Quotes = () => {
     },[])
     return (
         <div>
-            {loading ? <Loading /> : <> {quotes && quotes.map(item => <QuoteItem data={item} />)}</>}
+            {loading ? <Loading /> : <> {quotes && quotes.map(item => <QuoteItem  key={item._id} data={item} />)}</>}
            
         </div>
     )

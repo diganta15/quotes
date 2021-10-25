@@ -77,6 +77,7 @@ const AuthState = (props) => {
 				userEmail: state.userEmail,
 				jwt: state.jwt,
 				errors: state.errors,
+				userId: state.userId,
 				signup,
 				login,
 				logout,
