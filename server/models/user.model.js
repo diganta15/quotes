@@ -59,9 +59,12 @@ async function signup(data) {
 
 	//return the response after saving data
 	const res = await saveData(data);
+	const {_id} = res;
 	const response = {
 		email:data.email,
-		jwt:webToken
+		id:_id,
+		jwt:webToken,
+
 	}
 	return response;
 }
@@ -82,7 +85,7 @@ async function login(data) {
 
 	if (foundUser) {
 		const dbPassword = foundUser.password;
-
+		const { _id } = foundUser;
 		const isSamePassword = bcrypt.compareSync(password, dbPassword);
 
 		if (isSamePassword) {
@@ -95,6 +98,7 @@ async function login(data) {
 			});
 			return {
 				email:email,
+				id:_id,
 				jwt:webToken,
 			};
 		} else

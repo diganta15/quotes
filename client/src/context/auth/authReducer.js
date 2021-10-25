@@ -22,6 +22,7 @@ export default (state,action)=>{
             return {
                 ...state,
                 userEmail:action.payload.email,
+                userId:action.payload.id,
             }
         case LOG_OUT:
             return{

@@ -8,6 +8,7 @@ const AuthState = (props) => {
 	const initialState = {
 		userEmail: null,
 		jwt: "",
+		userId:null,
 		errors: null,
 	};
 
