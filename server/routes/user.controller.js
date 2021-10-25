@@ -36,6 +36,7 @@ async function httpLogInUser(req, res) {
 
 async function httpGetLoggedInUser(req,res){
 	try{
+		
 		const token =req.headers['x-auth-token'];
 	
 	

@@ -115,7 +115,16 @@ async function getLoggedInUser(token){
 		
 		const decoded = await jwt.verify(token,secret);
 		console.log(decoded);
-		return decoded;
+		const {email} = decoded;
+		console.log(email);
+		const userData = await user.findOne({email});
+		const {_id} = userData;
+		console.log(user);
+		const returnObj = {
+			id:_id,
+			...decoded
+		}
+		return returnObj;
 	}
 	catch(err){
 		return {
