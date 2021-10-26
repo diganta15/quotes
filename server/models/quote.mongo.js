@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
 const quote = mongoose.Schema({
-	userId:{
-		type:String,
-		required:true,
+	userId: {
+		type: String,
+		required: true,
 	},
 	author: {
 		type: String,
@@ -19,4 +19,4 @@ const quote = mongoose.Schema({
 	},
 });
 
-module.exports = mongoose.model('quote',quote);
+module.exports = mongoose.model("quote", quote);

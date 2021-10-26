@@ -1,8 +1,5 @@
 const quote = require("../models/quote.mongo");
 
-
-
-
 async function getAllQuotes() {
 	try {
 		const res = await quote.find({}).sort({ date: -1 });
@@ -14,14 +11,13 @@ async function getAllQuotes() {
 }
 
 async function getQuote(id) {
-	try{
-        const res = await quote.findOne({_id:id});
-        return res;
-    }
-    catch(err){
-        const error = {error:"Cannot get quote"};
-        return error;
-    }
+	try {
+		const res = await quote.findOne({ _id: id });
+		return res;
+	} catch (err) {
+		const error = { error: "Cannot get quote" };
+		return error;
+	}
 }
 
 async function saveData(data) {
@@ -50,12 +46,19 @@ async function addQuote(quote) {
 	return res;
 }
 
-async function getUserQuotes(id){
+async function updateQuote(id, data) {
+	data.date = new Date();
+	console.log(data);
+	const res = await quote.findByIdAndUpdate(id, data, { new: true });
+	console.log(res);
+	return res;
+}
+
+async function getUserQuotes(id) {
 	try {
-		const res = await quote.find({ userId: id }).sort({date:-1});
+		const res = await quote.find({ userId: id }).sort({ date: -1 });
 		return res;
-	}
-	catch (err) {
+	} catch (err) {
 		const error = { error: "Cannot get user's quote" };
 		return error;
 	}
@@ -65,5 +68,6 @@ module.exports = {
 	getAllQuotes,
 	getQuote,
 	addQuote,
-	getUserQuotes
+	updateQuote,
+	getUserQuotes,
 };
