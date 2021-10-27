@@ -11,7 +11,6 @@ import {
 
 const URL = "http://localhost:8000";
 
-
 const QuotesState = (props) => {
 	const initialState = {
 		quotes: null,
@@ -29,7 +28,7 @@ const QuotesState = (props) => {
 			const data = await res.json();
 			dispatch({ type: GET_ALL_QUOTES, payload: data });
 		} catch (err) {
-			dispatch({ type: ERROR, payload: err });
+			dispatch({ type: ERROR, payload: 'Cannot Get Quotes' });
 		}
 	};
 
@@ -40,7 +39,7 @@ const QuotesState = (props) => {
 			const data = await res.json();
 			dispatch({ type: GET_QUOTE, payload: data });
 		} catch (err) {
-			dispatch({ type: ERROR, payload: err });
+			dispatch({ type: ERROR, payload: 'Cannot Get Quote'});
 		}
 	};
 
@@ -51,18 +50,40 @@ const QuotesState = (props) => {
 	const getUserQuote = async (id) => {};
 
 	//Add Quote
-	const addQuote = async(data,token) => {
-
-		const res = await fetch(`${URL}/quotes/add`,{
-			method:"POST",
-			headers:{
-				'Content-Type':'application/json',
-				'x-auth-token':token
+	const addQuote = async (data, token) => {
+	try{
+		const res = await fetch(`${URL}/quotes/add`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				"x-auth-token": token,
 			},
-			body:JSON.stringify(data)
+			body: JSON.stringify(data),
 		});
-	console.log(await res.json());
+		console.log(await res.json());
+	}catch(err){
+		dispatch({type:ERROR, payload:'Cannot Add Quote'});
+	}
 	};
+
+	const updateQuote = async (id, data, token) => {
+try{
+			console.log(data);
+			const res = await fetch(`${URL}/quotes/update/${id}`, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+					"x-auth-token": token,
+				},
+				body: JSON.stringify(data)
+			});
+			console.log(await res.json());
+		}
+		catch(err){
+			dispatch({type:ERROR, payload:'Cannot Update Quote'})
+		}
+}
+
 	return (
 		<QuotesContext.Provider
 			value={{
@@ -73,7 +94,8 @@ const QuotesState = (props) => {
 				getQuote,
 				getUserQuotes,
 				getUserQuote,
-				addQuote
+				addQuote,
+				updateQuote,
 			}}>
 			{props.children}
 		</QuotesContext.Provider>

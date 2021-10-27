@@ -1,6 +1,6 @@
 import QuotesState from "./context/quotes/QuotesState";
 import AuthState from "./context/auth/AuthState";
-
+import './App.css';
 import "bulma/css/bulma.css";
 import { Section } from "./Section";
 function App() {

@@ -24,7 +24,7 @@ export const UploadForm = () => {
         const token = localStorage.getItem('token');
 		data.date = new Date();
         data.userId = userId;
-		//TODO Submit data to database
+	
 
         addQuote(data, token);
 	};

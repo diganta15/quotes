@@ -10,6 +10,7 @@ import { Quotes } from "./components/Quotes/Quotes";
 import { UploadForm } from "./components/UploadForm";
 import AuthContext from './context/auth/authContext';
 import { PrivateRoute } from './routing/PrivateRoute';
+import { UpdateQuote } from './components/Quotes/UpdateQuote';
 
 export const Section = () => {
 
@@ -34,6 +35,7 @@ export const Section = () => {
                     <Route exact path='/login' component={Login} />
                     <PrivateRoute exact path='/dashboard' component={Dashboard} />
                     <Route exact path='/quote/:id' component={SingleQuote} />
+                    <Route exact path='/quote/update/:id' component={UpdateQuote} />
                     <Route component={NotFound} />
                 </Switch>
             </div>
