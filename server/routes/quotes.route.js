@@ -7,6 +7,7 @@ const {
 	httpAddQuote,
 	httpGetUserQuotes,
 	httpUpdateQuote,
+	httpDeleteQuote,
 } = require("./quotes.controller");
 const router = express.Router();
 
@@ -33,6 +34,12 @@ router.get("/user/:id", auth, httpGetUserQuotes);
 //@desec    Update Quote
 //@access   Private
 //@route    PUT /quotes/update/id
-router.put("/update/:id", httpUpdateQuote);
+router.put("/update/:id",auth, httpUpdateQuote);
+
+
+//@desec	Delete Quote
+//@access	Private
+//@route	GET  /quotes/delete/id
+router.get("/delete/:id",auth,httpDeleteQuote);
 
 module.exports = router;

@@ -4,6 +4,7 @@ const {
 	addQuote,
 	getUserQuotes,
 	updateQuote,
+	deleteQuote
 } = require("../models/quotes.model");
 
 async function httpGetAllQuotes(req, res) {
@@ -58,10 +59,23 @@ async function httpGetUserQuotes(req, res) {
 	}
 }
 
+async function httpDeleteQuote(req,res){
+	try{
+		const id = req.params.id;
+		const token = req.header("x-auth-token");
+		const response = await deleteQuote(id,token);
+		return res.status(200).json(response);
+		
+	}catch(err){
+		return res.status(500).json({error:"Server Error"})
+	}
+}
+
 module.exports = {
 	httpGetAllQuotes,
 	httpGetQuote,
 	httpAddQuote,
 	httpUpdateQuote,
 	httpGetUserQuotes,
+	httpDeleteQuote
 };

@@ -28,7 +28,7 @@ const QuotesState = (props) => {
 			const data = await res.json();
 			dispatch({ type: GET_ALL_QUOTES, payload: data });
 		} catch (err) {
-			dispatch({ type: ERROR, payload: 'Cannot Get Quotes' });
+			dispatch({ type: ERROR, payload: "Cannot Get Quotes" });
 		}
 	};
 
@@ -39,7 +39,7 @@ const QuotesState = (props) => {
 			const data = await res.json();
 			dispatch({ type: GET_QUOTE, payload: data });
 		} catch (err) {
-			dispatch({ type: ERROR, payload: 'Cannot Get Quote'});
+			dispatch({ type: ERROR, payload: "Cannot Get Quote" });
 		}
 	};
 
@@ -51,23 +51,23 @@ const QuotesState = (props) => {
 
 	//Add Quote
 	const addQuote = async (data, token) => {
-	try{
-		const res = await fetch(`${URL}/quotes/add`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-				"x-auth-token": token,
-			},
-			body: JSON.stringify(data),
-		});
-		console.log(await res.json());
-	}catch(err){
-		dispatch({type:ERROR, payload:'Cannot Add Quote'});
-	}
+		try {
+			const res = await fetch(`${URL}/quotes/add`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"x-auth-token": token,
+				},
+				body: JSON.stringify(data),
+			});
+			console.log(await res.json());
+		} catch (err) {
+			dispatch({ type: ERROR, payload: "Cannot Add Quote" });
+		}
 	};
 
 	const updateQuote = async (id, data, token) => {
-try{
+		try {
 			console.log(data);
 			const res = await fetch(`${URL}/quotes/update/${id}`, {
 				method: "PUT",
@@ -75,14 +75,29 @@ try{
 					"Content-Type": "application/json",
 					"x-auth-token": token,
 				},
-				body: JSON.stringify(data)
+				body: JSON.stringify(data),
 			});
 			console.log(await res.json());
+		} catch (err) {
+			dispatch({ type: ERROR, payload: "Cannot Update Quote" });
 		}
-		catch(err){
-			dispatch({type:ERROR, payload:'Cannot Update Quote'})
+	};
+
+	const deleteQuote = async (id, token) => {
+		try {
+			console.log(token);
+			console.log(id);
+			const res = await fetch(`http://localhost:8000/quotes/delete/${id}`, {
+				headers: {
+					"x-auth-token": token,
+				},
+			});
+			const data = await res.json();
+			console.log(data);
+		} catch (err) {
+			dispatch({ type: ERROR, payload: "Cannot Delete Quote" });
 		}
-}
+	};
 
 	return (
 		<QuotesContext.Provider
@@ -96,6 +111,7 @@ try{
 				getUserQuote,
 				addQuote,
 				updateQuote,
+				deleteQuote
 			}}>
 			{props.children}
 		</QuotesContext.Provider>

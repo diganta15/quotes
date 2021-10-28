@@ -1,4 +1,7 @@
+const jwt = require("jsonwebtoken");
+const config = require("config");
 const quote = require("../models/quote.mongo");
+const user = require("./user.mongo");
 
 async function getAllQuotes() {
 	try {
@@ -54,6 +57,38 @@ async function updateQuote(id, data) {
 	return res;
 }
 
+async function deleteQuote(id, token) {
+	try {
+		
+		const secret = config.get("jwtSecret");
+		const decoded = jwt.verify(token, secret);
+		const email = decoded.email;
+		
+		const userObj = await user.findOne({ email });
+		
+		if (!userObj) {
+			return { status: 400, error: "User Does Not Exist" };
+		}
+
+		const { _id } = userObj;
+		const res = await quote.findById(id);
+
+		if (!res) {
+			return { status: 400, error: "Cannot Find Contact" };
+		}
+
+		if (res.userId == _id) {
+			await quote.findByIdAndDelete(id);
+
+			return { msg: "Contact Removed" };
+		} else {
+			return { status: 403, error: "Cannot Delete The User" };
+		}
+	} catch (err) {
+		return { status: 500, error: "Internal Server Error" };
+	}
+}
+
 async function getUserQuotes(id) {
 	try {
 		const res = await quote.find({ userId: id }).sort({ date: -1 });
@@ -69,5 +104,6 @@ module.exports = {
 	getQuote,
 	addQuote,
 	updateQuote,
+	deleteQuote,
 	getUserQuotes,
 };
