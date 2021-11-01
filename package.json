@@ -7,12 +7,16 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "npm run start --prefix server",
     "client": "npm run start --prefix client",
-    "dev":"concurrently \"npm run server\" \"npm run client\" "
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
   },
   "author": "Diganta Das",
   "license": "MIT",
   "dependencies": {
+    "bulma-toast": "^2.4.1",
     "concurrently": "^6.3.0",
-    "npx": "^10.2.2"
+    "materialize-css": "^1.0.0-rc.2",
+    "npx": "^10.2.2",
+    "react-notification-system": "^0.4.0",
+    "react-toastify": "^8.0.3"
   }
 }

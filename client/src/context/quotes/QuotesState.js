@@ -29,6 +29,10 @@ const QuotesState = (props) => {
 			dispatch({ type: GET_ALL_QUOTES, payload: data });
 		} catch (err) {
 			dispatch({ type: ERROR, payload: "Cannot Get Quotes" });
+
+			setTimeout(() => {
+				dispatch({ type: ERROR, payload: null });
+			}, 3000);
 		}
 	};
 
@@ -40,6 +44,9 @@ const QuotesState = (props) => {
 			dispatch({ type: GET_QUOTE, payload: data });
 		} catch (err) {
 			dispatch({ type: ERROR, payload: "Cannot Get Quote" });
+			setTimeout(() => {
+				dispatch({ type: ERROR, payload: null });
+			}, 3000);
 		}
 	};
 
@@ -63,6 +70,10 @@ const QuotesState = (props) => {
 			console.log(await res.json());
 		} catch (err) {
 			dispatch({ type: ERROR, payload: "Cannot Add Quote" });
+			setTimeout(() => {
+				dispatch({ type: ERROR, payload: null });
+			}, 3000);
+			
 		}
 	};
 
@@ -80,6 +91,9 @@ const QuotesState = (props) => {
 			console.log(await res.json());
 		} catch (err) {
 			dispatch({ type: ERROR, payload: "Cannot Update Quote" });
+			setTimeout(() => {
+				dispatch({ type: ERROR, payload: null });
+			}, 3000);
 		}
 	};
 
@@ -96,6 +110,9 @@ const QuotesState = (props) => {
 			console.log(data);
 		} catch (err) {
 			dispatch({ type: ERROR, payload: "Cannot Delete Quote" });
+			setTimeout(() => {
+				dispatch({ type: ERROR, payload: null });
+			}, 3000);
 		}
 	};
 
@@ -111,7 +128,7 @@ const QuotesState = (props) => {
 				getUserQuote,
 				addQuote,
 				updateQuote,
-				deleteQuote
+				deleteQuote,
 			}}>
 			{props.children}
 		</QuotesContext.Provider>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export const QuoteItem = ({ data, deleteQuote }) => {
-	const [token, setToken] = useState("");
+	const [token, setToken] = useState(null);
 	const { quote, author, _id } = data;
 
 	useEffect(() => {
